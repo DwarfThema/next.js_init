@@ -1,3 +1,9 @@
+import NavBar from "../components/NavBar";
+
 export default function Photato() {
-  return "about";
+  return (
+    <div>
+      <h1>About</h1>
+    </div>
+  );
 }
