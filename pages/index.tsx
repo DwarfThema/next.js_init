@@ -3,14 +3,12 @@ import Seo from "../components/Seo";
 
 export default function Home({ results }: any) {
   console.log(results);
-
   return (
     <div className="container">
       <Seo title="Home" />
-
       {results?.map((movie: any) => (
         <div className="movie" key={movie.id}>
-          <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
+          <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
           <h4> {movie.original_title} </h4>
         </div>
       ))}
@@ -30,6 +28,9 @@ export default function Home({ results }: any) {
           }
           .movie:hover img {
             transform: scale(1.05) translateY(-10px);
+          }
+          .movie {
+            cursor: pointer;
           }
           .movie h4 {
             font-size: 18px;
