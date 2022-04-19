@@ -1,15 +1,48 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Seo from "../components/Seo";
 
 export default function Home({ results }: any) {
-  console.log(results);
+  const router = useRouter();
+  const onClick = (id: any, title: string) => {
+    router.push(
+      {
+        pathname: `/movies/${id}`,
+        query: {
+          id: id,
+          title: title,
+        },
+      },
+      `/movies/${id}`
+      //as 부분으로 브라우저 주소의 정보를 마스킹해줘서 안보이게 할 수 있다.
+    );
+  };
   return (
     <div className="container">
       <Seo title="Home" />
       {results?.map((movie: any) => (
-        <div className="movie" key={movie.id}>
+        <div
+          onClick={() => onClick(movie.id, movie.original_title)}
+          className="movie"
+          key={movie.id}
+        >
           <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
-          <h4> {movie.original_title} </h4>
+          <h4>
+            <Link
+              href={{
+                pathname: `/movies/${movie.id}`,
+                query: {
+                  id: movie.id,
+                  title: movie.original_title,
+                },
+              }}
+              as={`/movies/${movie.id}`}
+              key={movie.id}
+            >
+              <a>{movie.original_title}</a>
+            </Link>
+          </h4>
         </div>
       ))}
       <style jsx>

@@ -2,9 +2,11 @@ import { useRouter } from "next/router";
 
 const Detail = () => {
   const router = useRouter();
-  console.log(router);
-
-  return "detail";
+  return (
+    <div>
+      <h4> {router.query.title || "loading"} </h4>
+    </div>
+  );
 };
 
 export default Detail;
